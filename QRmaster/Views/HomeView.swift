@@ -2,6 +2,8 @@ import SwiftUI
 
 struct HomeView: View {
     @Environment(QRHistoryStore.self) private var history
+    @Environment(SubscriptionManager.self) private var subscriptions
+    @State private var showPaywall = false
 
     private let columns = [
         GridItem(.flexible(), spacing: 12),
@@ -42,11 +44,24 @@ struct HomeView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .principal) {
-                    EmptyView()
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        showPaywall = true
+                    } label: {
+                        Label(
+                            subscriptions.isPremium ? L10n.t("paywall.status.pro") : L10n.t("paywall.status.unlock"),
+                            systemImage: subscriptions.isPremium ? "checkmark.seal.fill" : "crown.fill"
+                        )
+                        .labelStyle(.titleAndIcon)
+                        .font(.subheadline.weight(.semibold))
+                    }
                 }
             }
             .toolbarBackground(AppTheme.background.opacity(0.92), for: .navigationBar)
+            .sheet(isPresented: $showPaywall) {
+                PaywallView()
+                    .environment(subscriptions)
+            }
         }
         .tint(AppTheme.brand)
     }

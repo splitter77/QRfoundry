@@ -5,7 +5,7 @@
 
 | | |
 |---|---|
-| **Bundle ID** | `com.magicsplitter.qrfoundry` |
+| **Bundle ID** | `com.magicsplitter.qrcodefoundry` |
 | **Platform** | iOS (iPhone & iPad) |
 | **Languages** | English · Français |
 | **UI** | SwiftUI |
@@ -52,11 +52,43 @@ QRmaster/
 └── Assets.xcassets  # App icon & logo
 ```
 
+## Landing page
+
+Bilingual marketing site (EN / FR):
+
+```bash
+open landing/index.html
+```
+
+Or serve locally:
+
+```bash
+cd landing && python3 -m http.server 8080
+```
+
+Then open `http://localhost:8080`.
+
+## Subscriptions (StoreKit)
+
+Plans: **1 week**, **1 month**, **6 months**, **1 year**, **lifetime**.
+
+Product IDs:
+
+- `com.magicsplitter.qrcodefoundry.weekly`
+- `com.magicsplitter.qrcodefoundry.monthly`
+- `com.magicsplitter.qrcodefoundry.sixmonths`
+- `com.magicsplitter.qrcodefoundry.yearly`
+- `com.magicsplitter.qrcodefoundry.lifetime`
+
+Local testing: open the scheme → **Run → Options → StoreKit Configuration** → select `Products.storekit`.
+
+Pro unlocks: share export, save to Photos, and history. Creation & preview stay free.
+
 ## Notes
 
 - Screen **recording** is blocked with an overlay; QR previews are shielded from casual screenshots.
-- Legitimate **export / share** still works via `ImageRenderer`.
-- Subscriptions for saving QR pages are planned later.
+- Legitimate **export / share** still works via `ImageRenderer` once Pro is active.
+- Create matching IAPs in App Store Connect before release.
 
 ## License
 

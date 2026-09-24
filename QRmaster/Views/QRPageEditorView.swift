@@ -146,6 +146,40 @@ struct QRPageEditorView: View {
 
             Divider().overlay(AppTheme.fieldBorder)
 
+            Text(L10n.t("qr.style.section"))
+                .font(.subheadline.weight(.semibold))
+                .foregroundStyle(AppTheme.ink)
+
+            VStack(alignment: .leading, spacing: 8) {
+                Text(L10n.t("qr.module.title"))
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(AppTheme.inkSecondary)
+                Picker(L10n.t("qr.module.title"), selection: $style.moduleStyle) {
+                    ForEach(QRModuleStyle.allCases) { option in
+                        Text(option.title).tag(option)
+                    }
+                }
+                .pickerStyle(.segmented)
+            }
+
+            VStack(alignment: .leading, spacing: 8) {
+                Text(L10n.t("qr.frame.title"))
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(AppTheme.inkSecondary)
+                Picker(L10n.t("qr.frame.title"), selection: $style.frameStyle) {
+                    ForEach(QRFrameStyle.allCases) { option in
+                        Text(option.title).tag(option)
+                    }
+                }
+                .pickerStyle(.menu)
+            }
+
+            if style.frameStyle != .none {
+                colorRow(L10n.t("qr.frame.color"), selection: $style.frameColor)
+            }
+
+            Divider().overlay(AppTheme.fieldBorder)
+
             Text(L10n.pageColors)
                 .font(.subheadline.weight(.semibold))
                 .foregroundStyle(AppTheme.ink)

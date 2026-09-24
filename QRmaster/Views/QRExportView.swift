@@ -7,7 +7,9 @@ struct QRExportView: View {
     var saveToHistory: Bool = true
 
     @Environment(QRHistoryStore.self) private var history
+    @Environment(SubscriptionManager.self) private var subscriptions
     @State private var showShare = false
+    @State private var showPaywall = false
     @State private var saveMessage: String?
     @State private var didSaveHistory = false
     @State private var hqImage: UIImage?
@@ -41,14 +43,22 @@ struct QRExportView: View {
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, 24)
 
+                    if !subscriptions.isPremium {
+                        premiumBanner
+                    }
+
                     VStack(spacing: 12) {
                         primaryButton(title: L10n.exportShare, icon: "square.and.arrow.up") {
-                            ensureImage()
-                            showShare = true
+                            requirePremium {
+                                ensureImage()
+                                showShare = true
+                            }
                         }
 
                         secondaryButton(title: L10n.exportSavePhotos, icon: "photo") {
-                            Task { await saveToPhotos() }
+                            requirePremium {
+                                Task { await saveToPhotos() }
+                            }
                         }
 
                         secondaryButton(title: L10n.exportCopy, icon: "doc.on.doc") {
@@ -81,11 +91,56 @@ struct QRExportView: View {
                 ShareSheet(items: [hqImage, model.payload])
             }
         }
+        .sheet(isPresented: $showPaywall) {
+            PaywallView()
+                .environment(subscriptions)
+        }
         .task {
             ensureImage()
             guard saveToHistory, !didSaveHistory else { return }
+            guard subscriptions.isPremium else { return }
             history.add(type: model.type, title: displayTitle, payload: model.payload)
             didSaveHistory = true
+        }
+        .onChange(of: subscriptions.isPremium) { _, isPremium in
+            guard isPremium, saveToHistory, !didSaveHistory else { return }
+            history.add(type: model.type, title: displayTitle, payload: model.payload)
+            didSaveHistory = true
+        }
+    }
+
+    private var premiumBanner: some View {
+        Button {
+            showPaywall = true
+        } label: {
+            HStack(spacing: 12) {
+                Image(systemName: "crown.fill")
+                    .foregroundStyle(Color(red: 0.85, green: 0.68, blue: 0.28))
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(L10n.t("paywall.banner.title"))
+                        .font(.subheadline.weight(.bold))
+                        .foregroundStyle(AppTheme.ink)
+                    Text(L10n.t("paywall.banner.subtitle"))
+                        .font(.caption)
+                        .foregroundStyle(AppTheme.inkSecondary)
+                }
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(AppTheme.inkTertiary)
+            }
+            .padding(14)
+            .background(ThemeCard(cornerRadius: 16))
+        }
+        .buttonStyle(.plain)
+        .padding(.horizontal, 20)
+    }
+
+    private func requirePremium(_ action: () -> Void) {
+        if subscriptions.isPremium {
+            action()
+        } else {
+            showPaywall = true
         }
     }
 

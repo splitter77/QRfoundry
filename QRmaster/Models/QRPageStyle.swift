@@ -14,6 +14,9 @@ struct QRPageStyle: Equatable {
     var qrForeground: Color
     var qrBackground: Color
     var textColor: Color
+    var moduleStyle: QRModuleStyle
+    var frameStyle: QRFrameStyle
+    var frameColor: Color
 
     var logoImage: UIImage? {
         guard let logoData else { return nil }
@@ -88,7 +91,10 @@ struct QRPageStyle: Equatable {
                 accentColor: Color(red: 0.20, green: 0.42, blue: 0.92),
                 qrForeground: .black,
                 qrBackground: printPaper,
-                textColor: printInk
+                textColor: printInk,
+                moduleStyle: .square,
+                frameStyle: .rounded,
+                frameColor: printQR
             )
         }
     }
@@ -111,7 +117,10 @@ struct QRPageStyle: Equatable {
             accentColor: accent,
             qrForeground: printQR,
             qrBackground: printPaper,
-            textColor: printInk
+            textColor: printInk,
+            moduleStyle: .square,
+            frameStyle: .none,
+            frameColor: printQR
         )
     }
 }

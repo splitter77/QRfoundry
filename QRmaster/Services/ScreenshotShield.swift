@@ -1,6 +1,11 @@
 import SwiftUI
 import UIKit
 
+/// Remettre à `true` après les captures App Store.
+enum ScreenProtection {
+    static let isEnabled = true
+}
+
 /// Surveille l’enregistrement d’écran et affiche un voile (sans casser le layout).
 @Observable
 final class ScreenCaptureGuard {
@@ -8,6 +13,7 @@ final class ScreenCaptureGuard {
     private var observer: NSObjectProtocol?
 
     init() {
+        guard ScreenProtection.isEnabled else { return }
         observer = NotificationCenter.default.addObserver(
             forName: UIScreen.capturedDidChangeNotification,
             object: nil,
@@ -31,7 +37,7 @@ struct ScreenCaptureBlocker: View {
 
     var body: some View {
         Group {
-            if guardState.isCaptured {
+            if ScreenProtection.isEnabled, guardState.isCaptured {
                 ZStack {
                     Color.black.opacity(0.94).ignoresSafeArea()
                     VStack(spacing: 14) {
@@ -53,12 +59,24 @@ struct ScreenCaptureBlocker: View {
             }
         }
         .animation(.easeInOut(duration: 0.25), value: guardState.isCaptured)
-        .allowsHitTesting(guardState.isCaptured)
+        .allowsHitTesting(ScreenProtection.isEnabled && guardState.isCaptured)
     }
 }
 
 /// Protège uniquement une zone (aperçu QR) : noire dans les captures, sans toucher à la fenêtre.
-struct ScreenshotShield<Content: View>: UIViewControllerRepresentable {
+struct ScreenshotShield<Content: View>: View {
+    @ViewBuilder var content: () -> Content
+
+    var body: some View {
+        if ScreenProtection.isEnabled {
+            ScreenshotShieldRepresentable(content: content)
+        } else {
+            content()
+        }
+    }
+}
+
+private struct ScreenshotShieldRepresentable<Content: View>: UIViewControllerRepresentable {
     @ViewBuilder var content: () -> Content
 
     func makeUIViewController(context: Context) -> SecureHostingController<Content> {

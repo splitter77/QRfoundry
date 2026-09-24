@@ -1,0 +1,195 @@
+{
+  "identifier" : "A1B2C3D4",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "49.99",
+      "familyShareable" : false,
+      "internalID" : "LIFETIME001",
+      "localizations" : [
+        {
+          "description" : "Unlock export and saving forever.",
+          "displayName" : "Lifetime",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "Débloquez l’export et la sauvegarde à vie.",
+          "displayName" : "À vie",
+          "locale" : "fr_FR"
+        }
+      ],
+      "productID" : "com.magicsplitter.qrcodefoundry.lifetime",
+      "referenceName" : "Lifetime",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_applicationInternalID" : "0",
+    "_developerTeamID" : "KWWKA8J558",
+    "_failTransactionsEnabled" : false,
+    "_lastSynchronizedDate" : 0,
+    "_locale" : "en_US",
+    "_storefront" : "USA",
+    "_storeKitErrors" : [
+
+    ]
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "QRFOUNDARYPRO",
+      "localizations" : [
+        {
+          "description" : "QR CODE FOUNDRY Pro",
+          "displayName" : "Pro",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "QR CODE LA FABRIQUE Pro",
+          "displayName" : "Pro",
+          "locale" : "fr_FR"
+        }
+      ],
+      "name" : "Pro",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "4.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "WEEKLY001",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Full access for one week, auto-renews.",
+              "displayName" : "1 Week",
+              "locale" : "en_US"
+            },
+            {
+              "description" : "Accès complet pendant une semaine, renouvellement auto.",
+              "displayName" : "1 semaine",
+              "locale" : "fr_FR"
+            }
+          ],
+          "productID" : "com.magicsplitter.qrcodefoundry.weekly",
+          "recurringSubscriptionPeriod" : "P1W",
+          "referenceName" : "Weekly",
+          "subscriptionGroupID" : "QRFOUNDARYPRO",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [
+
+          ]
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "9.99",
+          "familyShareable" : false,
+          "groupNumber" : 2,
+          "internalID" : "MONTHLY001",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Full access for one month, auto-renews.",
+              "displayName" : "1 Month",
+              "locale" : "en_US"
+            },
+            {
+              "description" : "Accès complet pendant un mois, renouvellement auto.",
+              "displayName" : "1 mois",
+              "locale" : "fr_FR"
+            }
+          ],
+          "productID" : "com.magicsplitter.qrcodefoundry.monthly",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Monthly",
+          "subscriptionGroupID" : "QRFOUNDARYPRO",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [
+
+          ]
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "39.99",
+          "familyShareable" : false,
+          "groupNumber" : 3,
+          "internalID" : "SIXMONTHS001",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Full access for six months, auto-renews.",
+              "displayName" : "6 Months",
+              "locale" : "en_US"
+            },
+            {
+              "description" : "Accès complet pendant six mois, renouvellement auto.",
+              "displayName" : "6 mois",
+              "locale" : "fr_FR"
+            }
+          ],
+          "productID" : "com.magicsplitter.qrcodefoundry.sixmonths",
+          "recurringSubscriptionPeriod" : "P6M",
+          "referenceName" : "Six Months",
+          "subscriptionGroupID" : "QRFOUNDARYPRO",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [
+
+          ]
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "59.99",
+          "familyShareable" : false,
+          "groupNumber" : 4,
+          "internalID" : "YEARLY001",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Full access for one year, auto-renews.",
+              "displayName" : "1 Year",
+              "locale" : "en_US"
+            },
+            {
+              "description" : "Accès complet pendant un an, renouvellement auto.",
+              "displayName" : "1 an",
+              "locale" : "fr_FR"
+            }
+          ],
+          "productID" : "com.magicsplitter.qrcodefoundry.yearly",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Yearly",
+          "subscriptionGroupID" : "QRFOUNDARYPRO",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [
+
+          ]
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 4,
+    "minor" : 0
+  }
+}

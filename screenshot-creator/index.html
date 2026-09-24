@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>App Store Screenshot Creator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div>
+      <h1>Screenshot Creator</h1>
+      <p>Drop captures → crop → export at App Store sizes</p>
+    </div>
+    <div class="header__actions">
+      <label class="btn btn--ghost">
+        Add images
+        <input id="fileInput" type="file" accept="image/*" multiple hidden />
+      </label>
+      <button id="exportAllBtn" class="btn" type="button" disabled>Export all</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <h2>Target size</h2>
+      <p class="hint" style="margin-top:0">ASC needs <strong>1242×2688</strong> or <strong>1284×2778</strong> (or landscape).</p>
+      <div id="sizeList" class="size-list"></div>
+
+      <h2>Crop</h2>
+      <label class="field">
+        <span>Zoom</span>
+        <input id="zoom" type="range" min="1" max="3" step="0.01" value="1" />
+      </label>
+      <div class="btn-row">
+        <button id="resetBtn" class="btn btn--ghost" type="button">Reset</button>
+        <button id="exportOneBtn" class="btn" type="button" disabled>Export this</button>
+      </div>
+      <p class="hint">Drag on the preview to reposition. Cover crop keeps the frame filled.</p>
+
+      <h2>Queue</h2>
+      <div id="queue" class="queue"></div>
+    </aside>
+
+    <section class="stage">
+      <div id="dropzone" class="dropzone">
+        <p>Drop screenshots here<br /><small>or click “Add images”</small></p>
+      </div>
+      <div id="previewWrap" class="preview-wrap is-hidden">
+        <canvas id="preview"></canvas>
+        <div class="preview-meta">
+          <span id="metaName">—</span>
+          <span id="metaSize">—</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

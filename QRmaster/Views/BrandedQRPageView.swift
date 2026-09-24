@@ -57,7 +57,10 @@ struct BrandedQRPageView: View {
                 payload: model.payload.isEmpty ? L10n.appName : model.payload,
                 size: qrSize,
                 foreground: style.qrForeground,
-                background: style.qrBackground
+                background: style.qrBackground,
+                moduleStyle: style.moduleStyle,
+                frameStyle: style.frameStyle,
+                frameColor: style.frameColor
             )
             .padding(compact ? 10 : 14)
             .background(
