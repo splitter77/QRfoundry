@@ -51,6 +51,17 @@ enum SubscriptionPlan: String, CaseIterable, Identifiable {
         }
     }
 
+    /// Billing period shown next to the price, e.g. "/ month". Nil for one-time purchases.
+    var periodSuffix: String? {
+        switch self {
+        case .weekly: return L10n.t("paywall.period.weekly")
+        case .monthly: return L10n.t("paywall.period.monthly")
+        case .sixMonths: return L10n.t("paywall.period.sixMonths")
+        case .yearly: return L10n.t("paywall.period.yearly")
+        case .lifetime: return nil
+        }
+    }
+
     var badge: String? {
         switch self {
         case .yearly: return L10n.t("paywall.badge.best")

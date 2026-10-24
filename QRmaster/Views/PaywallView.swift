@@ -1,6 +1,11 @@
 import StoreKit
 import SwiftUI
 
+enum LegalLinks {
+    static let termsOfUse = URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!
+    static let privacyPolicy = URL(string: "https://splitter77.github.io/QRfoundry/privacy.html")!
+}
+
 struct PaywallView: View {
     @Environment(SubscriptionManager.self) private var subscriptions
     @Environment(\.dismiss) private var dismiss
@@ -18,6 +23,7 @@ struct PaywallView: View {
                         header
                         benefits
                         plans
+                        disclosure
                         cta
                         footerLinks
 
@@ -145,9 +151,16 @@ struct PaywallView: View {
 
                 Spacer()
 
-                Text(product?.displayPrice ?? "—")
-                    .font(.subheadline.weight(.semibold))
-                    .foregroundStyle(AppTheme.ink)
+                VStack(alignment: .trailing, spacing: 2) {
+                    Text(product?.displayPrice ?? "—")
+                        .font(.subheadline.weight(.semibold))
+                        .foregroundStyle(AppTheme.ink)
+                    if let suffix = plan.periodSuffix {
+                        Text(suffix)
+                            .font(.caption2)
+                            .foregroundStyle(AppTheme.inkSecondary)
+                    }
+                }
             }
             .padding(14)
             .background(
@@ -162,6 +175,22 @@ struct PaywallView: View {
         .buttonStyle(.plain)
         .disabled(product == nil)
         .opacity(product == nil ? 0.55 : 1)
+    }
+
+    @ViewBuilder
+    private var disclosure: some View {
+        if let product = subscriptions.product(for: selectedPlan) {
+            Group {
+                if let suffix = selectedPlan.periodSuffix {
+                    Text(String(format: L10n.t("paywall.disclosure"), selectedPlan.title, product.displayPrice, suffix))
+                } else {
+                    Text(String(format: L10n.t("paywall.disclosure.lifetime"), selectedPlan.title, product.displayPrice))
+                }
+            }
+            .font(.footnote)
+            .foregroundStyle(AppTheme.inkSecondary)
+            .multilineTextAlignment(.center)
+        }
     }
 
     private var cta: some View {
@@ -199,6 +228,13 @@ struct PaywallView: View {
                 .font(.caption2)
                 .foregroundStyle(AppTheme.inkTertiary)
                 .multilineTextAlignment(.center)
+
+            HStack(spacing: 16) {
+                Link(L10n.t("paywall.terms"), destination: LegalLinks.termsOfUse)
+                Link(L10n.t("paywall.privacy"), destination: LegalLinks.privacyPolicy)
+            }
+            .font(.caption.weight(.semibold))
+            .foregroundStyle(AppTheme.brand)
         }
     }
 

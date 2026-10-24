@@ -45,6 +45,31 @@ Preview live as you edit, then export in high quality to share or save to Photos
 Built for creators, shops, restaurants, events and small businesses who want QR codes that feel polished and on-brand.
 
 Forge your codes. Forge your brand.
+
+QR CODE FOUNDRY PRO
+Unlock HD export, saving to Photos, history and full styling with an auto-renewable subscription:
+• 1 Week – $4.99 per week
+• 1 Month – $9.99 per month
+• 6 Months – $39.99 every 6 months
+• 1 Year – $59.99 per year
+A one-time Lifetime purchase ($49.99) is also available.
+
+Payment is charged to your Apple Account at confirmation of purchase. Subscriptions renew automatically unless cancelled at least 24 hours before the end of the current period. Your account is charged for renewal within 24 hours before the end of the current period. Manage or cancel subscriptions in your Apple Account settings after purchase.
+
+Terms of Use (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Privacy Policy: https://splitter77.github.io/QRfoundry/privacy.html
+```
+
+## Privacy Policy URL (App Store Connect field)
+
+```
+https://splitter77.github.io/QRfoundry/privacy.html
+```
+
+## App Review notes
+
+```
+Subscriptions are offered on the paywall (tap any export/save action, or the Unlock button at the top right of the home screen). The paywall shows each subscription's title, length and price, plus functional links to the Terms of Use (Apple standard EULA) and the Privacy Policy. The standard Apple EULA is linked in the App Description. All In-App Purchase products (weekly, monthly, six months, yearly, lifetime) are submitted with this binary.
 ```
 
 ## Keywords
