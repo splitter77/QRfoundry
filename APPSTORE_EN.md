@@ -57,13 +57,13 @@ A one-time Lifetime purchase ($49.99) is also available.
 Payment is charged to your Apple Account at confirmation of purchase. Subscriptions renew automatically unless cancelled at least 24 hours before the end of the current period. Your account is charged for renewal within 24 hours before the end of the current period. Manage or cancel subscriptions in your Apple Account settings after purchase.
 
 Terms of Use (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
-Privacy Policy: https://splitter77.github.io/QRfoundry/privacy.html
+Privacy Policy: https://magicsplitter.fr/privacy/qrcode.html
 ```
 
 ## Privacy Policy URL (App Store Connect field)
 
 ```
-https://splitter77.github.io/QRfoundry/privacy.html
+https://magicsplitter.fr/privacy/qrcode.html
 ```
 
 ## App Review notes

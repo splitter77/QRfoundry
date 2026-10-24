@@ -3,7 +3,7 @@ import SwiftUI
 
 enum LegalLinks {
     static let termsOfUse = URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!
-    static let privacyPolicy = URL(string: "https://splitter77.github.io/QRfoundry/privacy.html")!
+    static let privacyPolicy = URL(string: "https://magicsplitter.fr/privacy/qrcode.html")!
 }
 
 struct PaywallView: View {
